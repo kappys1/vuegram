@@ -31,6 +31,6 @@ export default class VuegramPost extends Vue {
 }
 </script>
 
-<style lang="scss" src="./vuegramPost.scss">
+<style lang="scss" src="./VuegramPost.scss">
 </style>
 
