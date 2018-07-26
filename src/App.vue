@@ -53,12 +53,14 @@ import posts from './data/posts';
 import filters from './data/filters';
 import PhoneBody from './components/PhoneBody/PhoneBody.vue';
 import EventBus from '@/event-bus';
+import VueDragscroll from 'vue-dragscroll';
+
+Vue.use(VueDragscroll);
 
 @Component({
   components: {
   PhoneBody
   }})
-
 export default class App extends Vue {
   posts : Array<{}> = [];
   filters : Array<{}> = [];
