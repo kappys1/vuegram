@@ -6,16 +6,28 @@
         :key="posts.indexOf(post)">
       </VuegramPost>
     </div>
-    <div v-if="step === 2">
+    <div v-if="step === 2 || step === 3">
       <div class="selected-image"
         :class="selectedFilter"
         :style="{ backgroundImage: 'url(' + image + ')' }">
       </div>
+    </div>
+    <div v-if="step === 2">
       <div class="filter-container">
         <FilterType v-for="filter in filters"
           :filter="filter"
           :image="image"
           :key="filters.indexOf(filter)" />
+      </div>
+    </div>
+    <div v-if="step === 3">
+      <div class="caption-container">
+        <textarea class="caption-input"
+          placeholder="Write a caption..."
+          type="text"
+          :value="value"
+          @input="$emit('input', $event.target.value)">
+        </textarea>
       </div>
     </div>
   </div>
@@ -38,6 +50,7 @@ export default class PhoneBody extends Vue {
     @Prop() public step!: Number;
     @Prop() public image!: String;
     @Prop() public selectedFilter!: String;
+    @Prop() public value!: String;
 }
 </script>
 
