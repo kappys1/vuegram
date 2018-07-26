@@ -35,7 +35,6 @@ export default class VuegramPost extends Vue {
     @Prop() public post!: IPost;
 
     like() {
-      console.log("click");
       if (this.post.hasBeenLiked) {
         this.post.likes = this.post.likes - 1;
       } else {
