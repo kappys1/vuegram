@@ -19,3 +19,6 @@ export default [
   { name: 'inkwell' },
   { name: 'nashville' },
 ];
+export interface IFilter {
+  name: string,
+} 

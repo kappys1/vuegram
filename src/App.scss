@@ -1,7 +1,10 @@
 $small: 520px;
 $medium: 768px;
 $large: 1216px;
-
+* {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
 html,
 body, 
 #app {

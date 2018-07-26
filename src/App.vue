@@ -36,6 +36,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import posts from './data/posts';
 import filters from './data/filters';
 import PhoneBody from './components/PhoneBody/PhoneBody.vue';
+import EventBus from '@/event-bus';
 
 @Component({
   components: {
@@ -46,8 +47,8 @@ export default class App extends Vue {
   posts : Array<{}> = [];
   filters : Array<{}> = [];
   step : number = 1;
-  image : any = 1;
-  selectedFilter : any = 1;
+  image : String = '';
+  selectedFilter : String = '';
   caption : any = 1;
 
   constructor() {
@@ -56,7 +57,7 @@ export default class App extends Vue {
     this.filters = filters;
   }
 
-  uploadImage(evt) {
+  uploadImage(evt : any) {
     const { files } = evt.target;
     if (!files.length) return;
     const reader = new FileReader();
@@ -67,7 +68,11 @@ export default class App extends Vue {
     };
     // To enable reuploading of same files in Chrome
     const file = document.querySelector('#file') || {};
-    file.value = '';
+    // file.value = '';
+  }
+
+  created() {
+    EventBus.$on('filter-selected', (evt : any) => { this.selectedFilter = evt.filter; });
   }
 }
 
