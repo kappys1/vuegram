@@ -1,6 +1,7 @@
 {
   "name": "vuegram",
   "version": "0.1.0",
+  "main": "src/main.ts",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
