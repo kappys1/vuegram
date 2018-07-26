@@ -3,6 +3,16 @@
   <div class="app-phone">
   <div class="phone-header">
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/vue_gram_logo_cp.png" />
+    <a class="cancel-cta"
+        v-if="step === 2 || step === 3"
+        @click="goToHome">
+        Cancel
+    </a>
+    <a class="next-cta"
+      v-if="step === 2"
+      @click="step++">
+      Next
+    </a>
   </div>
   <phone-body
     :step="step"
@@ -12,7 +22,7 @@
     :selectedFilter="selectedFilter"
     v-model="caption"/>
   <div class="phone-footer">
-    <div class="home-cta">
+    <div class="home-cta" @click="goToHome">
       <i class="fas fa-home fa-lg"></i>
     </div>
     <div class="upload-cta">
@@ -20,6 +30,7 @@
         name="file"
         id="file"
         class="inputfile"
+        :disabled="step !== 1"
         @change="uploadImage"/>
       <label for="file">
         <i class="far fa-plus-square fa-lg"></i>
@@ -73,6 +84,12 @@ export default class App extends Vue {
 
   created() {
     EventBus.$on('filter-selected', (evt : any) => { this.selectedFilter = evt.filter; });
+  }
+  goToHome() {
+    this.image = '';
+    this.selectedFilter = '';
+    this.caption = '';
+    this.step = 1;
   }
 }
 
